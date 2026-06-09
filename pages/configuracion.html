@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuración</title>
+
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:sans-serif;background:#f4f4f5;display:flex;justify-content:center;padding:2rem 1rem;min-height:100vh}
+        .wrap{width:100%;max-width:420px}
+
+        .header{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+        .icon{width:36px;height:36px;border-radius:8px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:18px}
+        h1{font-size:17px;font-weight:600;color:#111}
+        .sub{font-size:13px;color:#888}
+
+        .card{background:#fff;border:1px solid #e4e4e7;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+
+        .section-label{
+            font-size:11px;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.07em;
+            color:#aaa;
+            margin-bottom:1rem
+        }
+
+        .field{display:flex;flex-direction:column;gap:5px;margin-bottom:.875rem}
+        .field:last-child{margin-bottom:0}
+
+        label{font-size:13px;color:#555}
+
+        input{
+            width:100%;
+            padding:8px 10px;
+            border:1px solid #d4d4d8;
+            border-radius:7px;
+            font-size:14px;
+            color:#111;
+            background:#fff;
+            outline:none
+        }
+
+        input:focus{
+            border-color:#3b82f6;
+            box-shadow:0 0 0 3px rgba(59,130,246,.15)
+        }
+
+        input#puerto{max-width:120px}
+
+        .btn{
+            width:100%;
+            padding:10px;
+            background:#111;
+            color:#fff;
+            border:none;
+            border-radius:8px;
+            font-size:14px;
+            font-weight:500;
+            cursor:pointer
+        }
+
+        .btn:active{opacity:.85}
+
+    </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <div class="header">
+        <div class="icon">⚙️</div>
+        <div>
+            <h1>Configuración</h1>
+            <p class="sub">WiFi, MQTT y Registro</p>
+        </div>
+    </div>
+
+    <form action="/guardar" method="GET">
+
+        <!-- ========================= -->
+        <!-- WIFI -->
+        <!-- ========================= -->
+        <div class="card">
+
+            <p class="section-label">📶 Red WiFi</p>
+
+            <div class="field">
+                <label for="ssid">SSID</label>
+                <input id="ssid" type="text" name="ssid" value="{{SSID}}" placeholder="Nombre de la red">
+            </div>
+
+            <div class="field">
+                <label for="password">Contraseña</label>
+                <input id="password" type="text" name="password" value="{{PASSWORD}}" placeholder="Contraseña de la red">
+            </div>
+
+            <div class="field">
+                <label for="dns">DNS</label>
+                <input id="dns" type="text" name="dns" value="{{DNS}}" placeholder="Ej: 192.168.1.1">
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- MQTT -->
+        <!-- ========================= -->
+        <div class="card">
+
+            <p class="section-label">📡 Broker MQTT</p>
+
+            <div class="field">
+                <label for="broker">Dirección del broker</label>
+                <input id="broker" type="text" name="broker" value="{{BROKER}}" placeholder="IP del broker">
+            </div>
+
+            <div class="field">
+                <label for="puerto">Puerto</label>
+                <input id="puerto" type="text" name="puerto" value="{{PUERTO}}" placeholder="1883">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn">
+            💾 Guardar configuración
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuración guardada</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:sans-serif;background:#f4f4f5;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:1rem}
+        .wrap{text-align:center;max-width:340px;width:100%}
+        .icon-circle{width:72px;height:72px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+        h1{font-size:20px;font-weight:600;color:#111;margin-bottom:.5rem}
+        .desc{font-size:14px;color:#666;line-height:1.6;margin-bottom:1.5rem}
+        .note{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:.875rem 1rem}
+        .note p{font-size:13px;color:#15803d}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="icon-circle">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
+             stroke="#16a34a" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+            <path stroke-dasharray="30" stroke-dashoffset="30" d="M5 13l4 4L19 7">
+                <animate attributeName="stroke-dashoffset"
+                         from="30" to="0" dur="0.45s"
+                         begin="0.15s" fill="freeze"/>
+            </path>
+        </svg>
+    </div>
+    <h1>¡Configuración guardada!</h1>
+    <p class="desc">Los datos de WiFi y MQTT fueron almacenados correctamente.</p>
+    <div class="note">
+        <p>El dispositivo se reiniciará y conectará con la nueva configuración.</p>
+    </div>
+</div>
+</body>
+</html>
