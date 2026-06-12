@@ -1,0 +1,287 @@
+/* ===================================================
+   WiFi Guardado — styles.css
+   =================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #080A10;
+  --surface:   #0E1118;
+  --surface-2: #161B26;
+  --border:    #1F2737;
+  --border-hi: #2E3D55;
+  --lime:      #B8FF3C;
+  --lime-dim:  rgba(184,255,60,0.10);
+  --lime-glow: rgba(184,255,60,0.22);
+  --text-1:    #F0F4FF;
+  --text-2:    #7A88A0;
+  --text-3:    #3A4558;
+  --ok:        #3BFFB0;
+  --r:         16px;
+  --r-sm:      10px;
+  --mono:      ui-monospace, 'Courier New', monospace;
+  --sans:      system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --ease:      cubic-bezier(.4,0,.2,1);
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text-1);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Canvas ── */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── Tarjeta ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 2rem;
+  box-shadow:
+    0 0 0 1px rgba(184,255,60,0.04),
+    0 32px 80px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+  /* entrada suave */
+  animation: cardIn 0.5s var(--ease) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle at top right, rgba(184,255,60,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Top ── */
+.card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.bar {
+  display: block;
+  width: 5px;
+  border-radius: 2px;
+  background: var(--lime);
+  box-shadow: 0 0 6px var(--lime);
+}
+.bar--1 { height: 8px; }
+.bar--2 { height: 14px; }
+.bar--3 { height: 20px; }
+
+.card__meta { flex: 1; }
+
+.card__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: var(--lime);
+  margin-bottom: 0.4rem;
+}
+
+.card__title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+}
+
+.card__status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.status-text {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--lime);
+  white-space: nowrap;
+}
+
+/* ── Divisor ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hi) 30%, var(--border-hi) 70%, transparent);
+  margin-bottom: 1.75rem;
+}
+
+/* ── Check animado ── */
+.check-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  color: var(--lime);
+  filter: drop-shadow(0 0 14px var(--lime-glow));
+}
+
+.check-circle__ring {
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  animation: drawRing 0.6s 0.2s var(--ease) forwards;
+}
+
+@keyframes drawRing {
+  to { stroke-dashoffset: 0; }
+}
+
+.check-circle__mark {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawMark 0.4s 0.75s var(--ease) forwards;
+}
+
+@keyframes drawMark {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Mensaje ── */
+.message {
+  text-align: center;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  animation: fadeUp 0.5s 0.9s var(--ease) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.message__main {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+.message__sub {
+  font-size: 0.8rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ── Detalles de red ── */
+.details {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  animation: fadeUp 0.5s 1.05s var(--ease) both;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  gap: 1rem;
+}
+
+.detail-row + .detail-row {
+  border-top: 1px solid var(--border);
+}
+
+.detail-row__key {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.detail-row__val {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--lime);
+  text-align: right;
+  word-break: break-all;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  body { padding: 1rem; }
+  .card { padding: 1.5rem 1.25rem; }
+  .card__title { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+  .check-circle__ring { animation: none; stroke-dashoffset: 0; }
+  .check-circle__mark { animation: none; stroke-dashoffset: 0; }
+  .message, .details { animation: none; }
+  .status-dot { animation: none; }
+}

@@ -6,10 +6,11 @@ import dht
 import machine
 import ujson
 import urequests
+import pandas
 
 from machine import Pin
 from machine import ADC
-from libraries.simple import MQTTClient
+from Libraries.simple import MQTTClient
 
 # =========================
 # TESTEO
@@ -70,8 +71,8 @@ BROKER_FILE = "connections/broker.txt"
 PUERTO_FILE = "connections/port.txt"
 DNS_FILE = "connections/dns.txt"
 
-HTML_FILE = "pages/configuracion.html"
-DESPEDIDA_FILE = "pages/despedida.html"
+HTML_FILE = "resources/pages/configuracion.html"
+DESPEDIDA_FILE = "resources/pages/despedida.html"
 
 # =========================
 # UTILIDADES
@@ -204,15 +205,15 @@ def registrar_dispositivo(ip, dns):
 # =========================
 # AP MODE
 # =========================
-ap = network.WLAN(network.AP_IF)
-ap.active(True)
-ap.config(essid=AP_SSID, password=AP_PASSWORD)
+__ap = network.WLAN(network.AP_IF)
+__ap.active(True)
+__ap.config(essid=AP_SSID, password=AP_PASSWORD)
 
-while not ap.active():
+while not __ap.active():
     time.sleep(1)
 
 print("AP iniciado:", AP_SSID)
-print("IP AP:", ap.ifconfig()[0])
+print("IP AP:", __ap.ifconfig()[0])
 
 # =========================
 # CONFIG SERVER
@@ -271,7 +272,7 @@ while not config_guardada:
             pass
 
 server.close()
-ap.active(False)
+__ap.active(False)
 
 print("CONFIG SERVER cerrado")
 

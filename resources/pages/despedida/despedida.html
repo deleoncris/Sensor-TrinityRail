@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuración guardada</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+    <main class="card">
+
+      <div class="card__top">
+        <div class="signal-bars" aria-hidden="true">
+          <span class="bar bar--1"></span>
+          <span class="bar bar--2"></span>
+          <span class="bar bar--3"></span>
+        </div>
+        <div class="card__meta">
+          <span class="card__label">RED INALÁMBRICA</span>
+          <h1 class="card__title">Configuración<br>guardada</h1>
+        </div>
+        <div class="card__status">
+          <span class="status-dot"></span>
+          <span class="status-text">Conectando…</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Icono check animado -->
+      <div class="check-wrap" aria-hidden="true">
+        <svg class="check-circle" viewBox="0 0 80 80" fill="none">
+          <circle class="check-circle__ring" cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2.5"/>
+          <path  class="check-circle__mark" d="M24 40 l11 11 l21-22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Mensaje -->
+      <div class="message">
+        <p class="message__main">Datos recibidos correctamente.</p>
+        <p class="message__sub">El dispositivo utilizará la nueva configuración para conectarse a la red WiFi. Puedes cerrar esta ventana.</p>
+      </div>
+
+      <!-- Detalles de red (opcionales, el backend puede rellenar con plantilla) -->
+      <div class="details">
+        <div class="detail-row">
+          <span class="detail-row__key">Red</span>
+          <span class="detail-row__val">{{SSID}}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row__key">Seguridad</span>
+          <span class="detail-row__val">WPA2 / WPA3</span>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
