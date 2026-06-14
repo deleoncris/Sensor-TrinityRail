@@ -7,6 +7,7 @@ class LedEstado:
         self.__pin_rojo = Pin(pin_rojo, Pin.OUT)
         self.__pin_verde = Pin(pin_verde, Pin.OUT)
         self.__is_catado_comun = is_catodo_comun
+        self.mostrar_idle()
     def mostrar_exito(self):
         if self.__is_catado_comun:
             self.__pin_rojo.off()

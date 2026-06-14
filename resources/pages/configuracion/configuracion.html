@@ -4,18 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuración WiFi</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/configuracion.css" />
 </head>
 <body>
-
   <div class="page-wrapper">
-
-    <!-- Partículas de fondo -->
     <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
-
     <main class="card">
-
-      <!-- Header -->
       <div class="card__top">
         <div class="signal-bars" aria-hidden="true">
           <span class="bar bar--1"></span>
@@ -31,69 +25,33 @@
           <span class="status-text">Sin conectar</span>
         </div>
       </div>
-
-      <!-- Línea divisora -->
       <div class="divider"></div>
-
-      <!-- Formulario -->
       <form class="config-form" action="/guardar" method="GET">
-
-        <!-- Riel lateral + campos -->
         <div class="fields-rail">
           <div class="rail-line" aria-hidden="true">
             <span class="rail-node rail-node--top"></span>
             <span class="rail-track"></span>
             <span class="rail-node rail-node--bottom"></span>
           </div>
-
           <div class="fields-stack">
-
-            <!-- SSID -->
             <div class="field" id="field-ssid">
               <label class="field__label" for="ssid">
                 <span class="field__label-text">Nombre de la red</span>
                 <span class="field__tag">SSID</span>
               </label>
               <div class="field__wrap">
-                <input
-                  class="field__input"
-                  id="ssid"
-                  type="text"
-                  name="ssid"
-                  value="{{SSID}}"
-                  placeholder="MiRedCasa_5G"
-                  autocomplete="off"
-                  spellcheck="false"
-                  maxlength="32"
-                />
+                <input class="field__input" id="ssid" type="text" name="ssid" value="{{SSID}}" placeholder="MiRedCasa_5G" autocomplete="off" spellcheck="false" maxlength="32"/>
                 <span class="field__len" id="ssid-len" aria-hidden="true">0</span>
               </div>
             </div>
-
-            <!-- Password -->
             <div class="field" id="field-password">
               <label class="field__label" for="password">
                 <span class="field__label-text">Contraseña</span>
                 <span class="field__tag">PASSWORD</span>
               </label>
               <div class="field__wrap">
-                <input
-                  class="field__input field__input--mono"
-                  id="password"
-                  type="password"
-                  name="password"
-                  value="{{PASSWORD}}"
-                  placeholder="••••••••"
-                  autocomplete="new-password"
-                  spellcheck="false"
-                  maxlength="63"
-                />
-                <button
-                  type="button"
-                  class="field__eye"
-                  id="togglePass"
-                  aria-label="Mostrar contraseña"
-                >
+                <input class="field__input field__input--mono" id="password" type="password" name="password" value="{{PASSWORD}}" placeholder="••••••••" autocomplete="new-password" spellcheck="false" maxlength="63"/>
+                <button type="button" class="field__eye" id="togglePass" aria-label="Mostrar contraseña">
                   <svg class="icon-eye" viewBox="0 0 24 24" fill="none">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8"/>
                     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
@@ -104,8 +62,6 @@
                   </svg>
                 </button>
               </div>
-
-              <!-- Fuerza de contraseña -->
               <div class="strength" id="strengthBox">
                 <div class="strength__track">
                   <div class="strength__fill" id="strengthFill"></div>
@@ -113,11 +69,8 @@
                 <span class="strength__label" id="strengthLabel"></span>
               </div>
             </div>
-
           </div>
         </div>
-
-        <!-- Botón -->
         <button type="submit" class="btn-save" id="btnSave">
           <span class="btn-save__inner">
             <svg class="btn-save__icon" viewBox="0 0 24 24" fill="none">
@@ -127,13 +80,9 @@
           </span>
           <span class="btn-save__shine" aria-hidden="true"></span>
         </button>
-
       </form>
-
     </main>
-
   </div>
-
-  <script src="app.js"></script>
+  <script src="/configuracion.js"></script>
 </body>
 </html>
